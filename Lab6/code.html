@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <title>Color Map</title>
+
+
+
+  </head>
+
+  <body onload="loadDoc();">
+  
+  <form>
+  <select id="select1" size="5">
+ 
+  </select>
+  
+  <select id="select2" size="5">
+ 
+  </select>
+  
+  
+       <script>
+		function loadDoc() {
+			var xhttp = new XMLHttpRequest();
+			var x = document.getElementById("select1");
+			var y = document.getElementById("select2");
+			xhttp.onreadystatechange = function() {
+					obj = JSON.parse(xhttp.responseText);
+					if (xhttp.readyState == 4 && xhttp.status == 200){
+								for(var i=0;i<7;i++){
+								var option = document.createElement("option");
+								option.setAttribute("id","o"+i)
+								option.text = " "  + obj[i].color + "  " + obj[i].value;
+								x.add(option);
+								
+								}
+								
+								for(var j=6;j>=0;j--){
+								var option1 = document.createElement("option");
+								option1.setAttribute("id","o"+i)
+								option1.text = " "  + obj[j].color + "  " + obj[j].value;
+								y.add(option1);
+								
+								
+								}
+								
+					}
+			}
+		xhttp.open("GET", "http://localhost/Lab6/color.json", true);
+		xhttp.send();
+		}
+		
+		
+          
+		  
+	   </script>
+	   
+  </body>
+
+</html>
